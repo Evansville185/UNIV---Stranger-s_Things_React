@@ -1,0 +1,107 @@
+* {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  background-color: rgb(231, 231, 231);
+}
+
+.body {
+  grid-column: 1;
+  grid-row: 3;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  overflow-y: hidden;
+}
+
+/* .app {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  grid-template-rows: auto auto 1fr;
+  grid-gap: 8px;
+  
+  height: 100%;
+  width: 100%;
+
+  overflow: hidden;
+
+  background: #444;
+} */
+
+header {
+  display: flex;
+  justify-content: space-between;
+  /* grid-template-columns: 320px 1fr;
+  grid-template-rows: auto auto 1fr;
+  grid-gap: 8px; */
+
+  width: 100%;
+  height: 75px;;
+
+  overflow: hidden;
+
+  background: white;
+  background-image: url("Stranger_Things.png");
+  background-repeat: no-repeat;
+  background-size: 200px 75px;
+}
+
+
+nav {
+  padding-right: 1rem;
+  font-size: 10px;
+  /* display: flex;
+  flex-direction: row; */
+}
+
+
+/* .content {
+  grid-column: 2;
+  grid-row: 3;
+
+  padding: 8px;
+  display: flex;
+
+  background: #ddd;
+  overflow: hidden;
+} */
+
+/* .App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+} */
