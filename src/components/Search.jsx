@@ -1,14 +1,12 @@
-// import React from 'react';
+import React from 'react';
 
-// const Search = () => {
-//     return (
-//       <div>
-//         <form className="searchContainer">
-//           <input id="searchBar" type="text" name="search-term" placeholder="search"></input>
-//           <button id="searchButton">submit</button>
-//         </form>
-//       </div>
-//     )
-// }
+const Search = () => {
+    return (
+        <form className="searchContainer">
+          <input type="text" id="searchBar" name="search-term" placeholder="Search"></input>
+          <button type="submit" id="searchBtn">Submit</button>
+        </form>
+    )
+}
 
-// export default Search;
+export default Search;

@@ -1,8 +1,11 @@
 import React from "react";
+import { Navbar } from '../components';
 
 const Header = () => {
     return (
-        <div id="header-logo"></div>
+        <header id="header">
+            <Navbar />
+        </header>
     )
 }
 

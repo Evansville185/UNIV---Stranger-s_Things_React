@@ -1,9 +1,9 @@
-// import React from 'react';
+import React from 'react';
 
-// const Footer = () => {
-//     return (
-//         <h1>footer</h1>
-//     )
-// }
+const Footer = () => {
+    return (
+        <h4 id="footer">footer</h4>
+    )
+}
 
-// export default Footer;
+export default Footer;
