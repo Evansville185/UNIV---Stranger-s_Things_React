@@ -1,12 +1,27 @@
 import React from "react";
-import { Navbar } from '../components';
+import { Link } from "react-router-dom";
 
-const Header = () => {
+function Header ({ isSignedIn, signedInName }) {
+
     return (
         <header id="header">
-            <Navbar />
+			<nav className="navi">
+				<ul>
+					<li><Link to="/">Home</Link></li>
+					{isSignedIn ? 
+					<li><Link to="/profile">Profile</Link></li>
+					: ''
+					}
+					{isSignedIn ? <li className="init">Welcome, {signedInName}!</li> :
+					<li><Link to="/register">Register</Link></li>
+					}
+					{isSignedIn ? '' :
+					<li><Link to="/signin">Sign-In</Link></li>
+					}
+				</ul>
+			</nav>
         </header>
-    )
+    );
 }
 
 export default Header;

@@ -1,35 +1,69 @@
-import { config } from '../config';
+import { config } from "../config";
 // import React, { useState } from 'react';
 
-
-// export const getAllPosts = async () => {
+// export const getAllPosts = async ({token}) => {
 //     try {
-//     const response = await fetch (`${config.apiLink}/${config.cohort}/posts`);
-//     const {data: {posts}} = await response.json();
-//     return {data:{posts}} 
+//         const response = await fetch (`${config.apiLink}/${config.cohort}/posts`, {
+//             method: 'GET',
+//             headers: {
+//                 'Content-Type': 'application/json',
+//                 'Authorization': `Bearer ${localStorage.getItem('token')}`
+//             },
+//         });
+//         const data = await response.json();
+//         return data
 //     } catch (error) {
-//         console.log(error)
-//     }   
+//         console.error(error);
+//     }
 // }
 
-
 export const getAllPosts = async () => {
-    try {
-        const response = await fetch (`${config.apiLink}/${config.cohort}/posts`);
-        const data = await response.json();
-        return data;
-        } catch (error) {
-            console.error(error);
-        }
-    }
+	try {
+		const response = await fetch(`${config.apiLink}/${config.cohort}/posts`);
+		const data = await response.json();
+		return data;
+	} catch (error) {
+		console.error(error);
+	}
+};
 
-//     export const CreatePost = () => {
-        
-//     }
+export async function sendUserMessage(postId, message, { token }) {
+	try {
+		const response = fetch(`${config.apiLink}/${config.cohort}${postId}/messages`, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${token}`,
+			},
+			body: JSON.stringify({
+				message: {
+					content: message,
+				},
+			}),
+		});
+		const result = await response.json();
+		console.log(result);
+		return result;
+	} catch (error) {
+		console.error(error);
+	}
+}
 
-//     export const SavePost = () => {
-        
+// export const getUserPosts = async () => {
+//     try {
+//         const response = await fetch(`${config.apiLink}/${config.cohort}/users/me`, {
+//             method: 'GET',
+//             headers: {
+//                 'Content-Type': 'application/json',
+//                 'Authorization': `Bearer ${localStorage.getItem('token')}`,
+//             },
+//         });
+//         const data = await response.json();
+//         return data;
+//         } catch(error) {
+//         console.error(error);
 //     }
+// }
 
 //     export const UpdatePost = ({posts, setPosts, setPostsId}) => {
 //         const [title, setTitle] = useState([]);
@@ -51,7 +85,7 @@ export const getAllPosts = async () => {
 //                 // location,
 //                 // willDeliver,
 //             }),
-//         });  
+//         });
 //         const data = /*await*/ response.json();
 //         //need to figure out which post it is inside post state  and replace just that one. in order to update the state, you need to update the ui because we know
 // 		//we've updated the data, we now need to update the ui
@@ -73,5 +107,3 @@ export const getAllPosts = async () => {
 //         setPostsId(null);
 //         }
 //     }
-
-    // export const Delete = ( {setPosts, posts} )
