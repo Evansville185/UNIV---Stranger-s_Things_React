@@ -50,7 +50,8 @@ header {
   background-image: url("Stranger_Things.png");
   background-repeat: no-repeat;
   background-size: 200px 75px;
-  position: fixed;
+  /* position: absolute; */
+  position: absolute; top: 0;
 }
 
 header li{
@@ -104,6 +105,7 @@ footer a{
   background-color: #000;
   color: #fff;
   padding: 5px;
+  position: aboslute; bottom: 0;
 }
 
 button {
@@ -178,6 +180,7 @@ main div {
   right: 0;
   width: 25%;
   margin-top: 1.5rem;
+
 }
 
 main h1, aside h2{

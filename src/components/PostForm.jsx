@@ -45,17 +45,17 @@ const PostForm = ({ token, isSignedIn }) => {
             console.log("is this a valid token:", token);
             // setPosts([result, ...posts]);
             isCreated(true);
+            setTitle('');
+            setDescription('');
+            setLocation('');
+            setPrice('');
+            setWillDeliver(false);
             if(!token) {
                 alert('Please register or sign in to create a post')
                 isCreated(false);
             } else {
                 setTimeout(() => {
                     isCreated(false); 
-                    setTitle('');
-                    setDescription('');
-                    setLocation('');
-                    setPrice('');
-                    setWillDeliver(false);
                     navigate('/profile');
                     }, 5000);
                 }
@@ -126,7 +126,6 @@ const PostForm = ({ token, isSignedIn }) => {
                 </label>
                 <button type="submit" id="pfBtn">Create</button>
                 <br />
-                {/* { openMsg ? <Message setOpenMsg={setOpenMsg} /> : ''} */}
                 {
                     created ?
                     <span>

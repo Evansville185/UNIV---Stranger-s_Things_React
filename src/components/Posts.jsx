@@ -167,7 +167,6 @@ console.log('postid', postId);
                             disabled={signedInName !== post.author.username}
                             onClick={() => setPostId(post.id) }>Edit</button> */}
                         <button type="button"
-                        // opacity, cursor: none, pointer-none
                             className="delBtn"
                             disabled={signedInName !== post.author.username}
                             onClick={() => handleDelete(post._id)}>Delete</button>
