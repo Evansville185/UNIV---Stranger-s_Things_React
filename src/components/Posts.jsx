@@ -12,9 +12,10 @@ const Posts = ({ signedInName, isSignedIn, token }) => {
     const [postsCopy, setPostsCopy] = useState([]);
     const [dropdownValue, setDropDownValue] = useState('title');
     const [showMsgBox, setShowMsgBox] = useState(false);
+    const [message, setMessage] = useState('');
+    
 
-
-//DELETE --only deletable if author of post------------------------------------------------
+//DELETE --only deletable if author of post-----------------------------------------------
     const handleDelete = async (postIdDelete) => {
         try {
             const response = await fetch(`${config.apiLink}/${config.cohort}/posts/${postIdDelete}`,{
@@ -86,25 +87,37 @@ const Posts = ({ signedInName, isSignedIn, token }) => {
 
 
   //Message----------------------------------------------------------------------------
-  const inqMessage = () => {
-
-  }
-
-
   //Message - start msg
   const inquireMessage = (post) => {
-    // if(post._id === postId) {
     setPostId(post._id);
     setShowMsgBox(true);
-    // if (callback) {
-    //     callback();
-    // }
+    console.log('postid', postId);
 }
-console.log('postid', postId);
 
   //Message - submit msg
-  const submitMessage = () => {
-  
+  const submitMessage = async (event) => {
+    event.preventDefault();
+    try {
+		const response = await fetch(`${config.apiLink}/${config.cohort}/posts/${postId}/messages`, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${token}`
+			},
+			body: JSON.stringify({
+				message: {
+					content: message
+				}
+			}),
+		});
+		const result = await response.json();
+		console.log("message result", result);
+		if (result.success) {
+            setMessage(message);
+        }
+	} catch (error) {
+        console.error(error);
+	}
   }
 
   //Message - cancel msg
@@ -112,6 +125,7 @@ console.log('postid', postId);
     setShowMsgBox(false);
     setPostId(null);
   }
+
 
 
     return (
@@ -137,7 +151,7 @@ console.log('postid', postId);
             postsCopy.map(post => (
                 <div key={post._id} className="postcontent">
                     <h3>{post.title}</h3>
-                    <p>{post._id}</p> {/* testing */}
+                    <p className="realpostid"><b>Post ID:</b>{post._id}</p> {/* testing */}
                     <p><b>User:</b> {post.author.username}</p>
                     <p>{post.isAuthor}</p>
                     <br />
@@ -181,7 +195,7 @@ console.log('postid', postId);
                                     <h3>Message</h3>
                                         <textarea 
                                             type='text' rows={4} cols={40}placeholder='Write a message...' className='message-box'
-                                            onChange={event => inqMessage(event.target.value)}/>
+                                            onChange={event => setMessage(event.target.value)}/>
                                             <br />
                                     <span>
                                         <button className='sendMsg' type='submit'>Submit</button>

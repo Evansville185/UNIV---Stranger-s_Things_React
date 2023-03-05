@@ -27,19 +27,37 @@ export const getAllPosts = async () => {
 	}
 };
 
-export async function sendUserMessage(postId, message, { token }) {
+// export async function sendUserMessage(postId, message, { token }) {
+// 	try {
+// 		const response = fetch(`${config.apiLink}/${config.cohort}${postId}/messages`, {
+// 			method: "POST",
+// 			headers: {
+// 				"Content-Type": "application/json",
+// 				Authorization: `Bearer ${token}`,
+// 			},
+// 			body: JSON.stringify({
+// 				message: {
+// 					content: message,
+// 				},
+// 			}),
+// 		});
+// 		const result = await response.json();
+// 		console.log(result);
+// 		return result;
+// 		// setMessage(message);
+// 	} catch (error) {
+// 		console.error(error);
+// 	}
+// }
+
+
+export const userMessages = async (token) => {
 	try {
-		const response = fetch(`${config.apiLink}/${config.cohort}${postId}/messages`, {
-			method: "POST",
+		const response = await fetch(`${config.apiLink}/${config.cohort}/users/me`, {
 			headers: {
-				"Content-Type": "application/json",
-				Authorization: `Bearer ${token}`,
+				'Content-Type': 'application/json',
+				'Authorization': `Bearer ${token}`
 			},
-			body: JSON.stringify({
-				message: {
-					content: message,
-				},
-			}),
 		});
 		const result = await response.json();
 		console.log(result);

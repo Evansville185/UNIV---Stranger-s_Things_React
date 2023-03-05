@@ -67,7 +67,6 @@ const PostForm = ({ token, isSignedIn }) => {
   //Message
 //   const submitMessage = async (event) => {
 //     event.preventDefault();
-
 //     try{
 //         const response = await fetch(`${config.apiLink}/${config.cohort}/posts`, {
 //             method: 'POST',
@@ -105,7 +104,7 @@ const PostForm = ({ token, isSignedIn }) => {
     <aside>
            <form onSubmit={handleSubmit} className="pfContainer">
             {isSignedIn ? <>
-                <h2 className="pfHead">Create Post</h2>
+                <h2>Create Post</h2>
                 <input type="text" id="pfTitle" name="pfTitle" placeholder="Title" required
                 onChange={(event) => setTitle(event.target.value)}></input>
 

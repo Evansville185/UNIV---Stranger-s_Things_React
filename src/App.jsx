@@ -26,7 +26,7 @@ const App = () => {
 						<main>
 							<Routes>
 								<Route path="/" element={<Posts signedInName={signedInName} isSignedIn={isSignedIn} token={token} />} />
-								<Route path="/profile" element={<Profile isSignedIn={isSignedIn} getToken={getToken}/>} />
+								<Route path="/profile" element={<Profile isSignedIn={isSignedIn} getToken={getToken} token={token}/>} />
 								<Route path="/register" element={<Register />} />
 								<Route path="/signin" element={<Signin UpdateSignedInName={UpdateSignedInName} SignedIn={SignedIn} getToken={getToken} token={token}/>} />
 								<Route path="/signout" element={<Signout />} />
