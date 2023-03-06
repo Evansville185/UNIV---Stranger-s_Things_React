@@ -31,7 +31,7 @@ const Signin = (props) => {
                 props.UpdateSignedInName(username)
                    props.SignedIn()
                    props.getToken(result.data.token)
-                  navigate('/')
+                    navigate('/')
                 } else {
                   alert('try again with the correct accounts details')
                 }

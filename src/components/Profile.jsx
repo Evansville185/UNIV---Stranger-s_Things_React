@@ -1,20 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Fragment } from 'react';
 import { userMessages } from '../api'
-// import { config } from "../config";
 
-
-// change name
 function Message({signedInName, token}) {
-    const [receivedMessages, setReceivedMessages] = useState([]);
+    const [receivedPosts, setReceivedPosts] = useState([]);
 
 useEffect(() => {
     const fetchMessages = async ()  => {
     const {data} = await userMessages(token);
-    setReceivedMessages(data.messages)
+    setReceivedPosts(data.posts)
     }
     fetchMessages();
 }, [token])
-
 
     return (
         <div>
@@ -24,14 +20,20 @@ useEffect(() => {
             <h1 className="messages">Messages</h1>
             <main>
                 <h3>Messages</h3>
-                {receivedMessages.map(message => (
-                    <div key={message._id} >
-                    <h3>{message.post.title}</h3>
-                    <p className="realpostid"><b>Post ID:</b> {message.post._id}</p>
-                    <p><b>Description:</b> <br />{message.description}</p>
+                {receivedPosts.map((post, i) => (
+                    <div key={`${post._id}-${i+1}`}>
+                    <h3>Title:{post.title}</h3>
+                    <p><b>Description:</b> <br />{post.description}</p>
                     <br />
-                    <p><b>Message From:</b> {message.fromUser.username}</p>
-                    <p>{message.content}</p>
+                    {post?.messages.map(message => (
+                        <Fragment key={message._id}>
+                        <div>
+                        <p className="realpostid"><b>Post ID:</b> {message._id}</p>
+                        <p><b>post From:</b> {message.fromUser.username}</p>
+                        <p className='profileMsg'>{message.content}</p>
+                        </div>
+                        </Fragment>
+                    ))}
                     </div>
                 ))}
             </main>
@@ -40,3 +42,6 @@ useEffect(() => {
 }
 
 export default Message;
+
+//post.id-1
+//GETTING the key prop error again...

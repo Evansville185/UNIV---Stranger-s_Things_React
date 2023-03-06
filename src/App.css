@@ -336,7 +336,12 @@ section input[type="text"], input[type="password"] {
   place-content: center;
 }
 
-
+/* Message */
+.profileMsg {
+  border: 1px solid gray;
+  padding: 2px;
+  margin-top: 10px;
+}
 
 
 /* .content {

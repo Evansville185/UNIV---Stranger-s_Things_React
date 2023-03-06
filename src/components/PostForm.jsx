@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { config } from '../config';
 import { useNavigate } from 'react-router-dom'
-// import { Message } from '../components'
-
 
 const PostForm = ({ token, isSignedIn }) => {
     
@@ -43,7 +41,6 @@ const PostForm = ({ token, isSignedIn }) => {
             console.log(result);
             setPosts(result);
             console.log("is this a valid token:", token);
-            // setPosts([result, ...posts]);
             isCreated(true);
             setTitle('');
             setDescription('');
@@ -64,41 +61,6 @@ const PostForm = ({ token, isSignedIn }) => {
             }
         } 
 
-  //Message
-//   const submitMessage = async (event) => {
-//     event.preventDefault();
-//     try{
-//         const response = await fetch(`${config.apiLink}/${config.cohort}/posts`, {
-//             method: 'POST',
-//             headers: {
-//                 'Content-Type': 'applicatoin/json',
-//                 'Authorization': `Bearer ${token}`
-//             },
-//             body: JSON.stringify({
-//                 message: {
-//                     // content: {msgContent}
-//                 }
-//             })
-//         });
-//         const result = await response.json();
-//         console.log(result);
-//         // setOpenMsg(true);
-//         return result;
-//     } catch (error) {
-//         console.error(error);
-//     }
-// }
-
-
-
-
-        // useEffect(() => {
-        //     if(isCreated) {
-        //         setPostsCopy(...posts);
-        //     }
-        // }, [posts, isCreated, setPostsCopy])
-
-    
     return (
         
     <aside>

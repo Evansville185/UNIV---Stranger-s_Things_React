@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Footer, Header, Posts, Profile, Register, Signin, Signout, Message } from "./components";
+import { Footer, Header, Posts, Profile, Register, Signin, Signout } from "./components";
 import { Routes, Route } from "react-router-dom";
 import './App.css'
 
@@ -15,7 +15,7 @@ const App = () => {
 	  };
 
 	const [token, setToken] = useState('');
-	const getToken = (token) => {
+	const getToken = (token, id) => {
 		setToken(token);
 	}
 
@@ -26,7 +26,7 @@ const App = () => {
 						<main>
 							<Routes>
 								<Route path="/" element={<Posts signedInName={signedInName} isSignedIn={isSignedIn} token={token} />} />
-								<Route path="/profile" element={<Profile isSignedIn={isSignedIn} getToken={getToken} token={token}/>} />
+								<Route path="/profile" element={<Profile isSignedIn={isSignedIn} signedInName={signedInName} getToken={getToken} token={token}/>} />
 								<Route path="/register" element={<Register />} />
 								<Route path="/signin" element={<Signin UpdateSignedInName={UpdateSignedInName} SignedIn={SignedIn} getToken={getToken} token={token}/>} />
 								<Route path="/signout" element={<Signout />} />

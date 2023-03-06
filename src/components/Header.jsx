@@ -9,7 +9,7 @@ function Header ({ isSignedIn, signedInName }) {
 				<ul>
 					<li><Link to="/">Home</Link></li>
 					{isSignedIn ? 
-					<li><Link to="/profile">Profile</Link></li>
+					<li><Link to="/profile" ssignedInName={signedInName}>Profile</Link></li>
 					: ''
 					}
 					{isSignedIn ? <li className="init">Welcome, {signedInName}!</li> :

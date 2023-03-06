@@ -126,8 +126,6 @@ const Posts = ({ signedInName, isSignedIn, token }) => {
     setPostId(null);
   }
 
-
-
     return (
     <main>
         <h1>Posts</h1>
