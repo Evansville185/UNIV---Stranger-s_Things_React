@@ -12,9 +12,9 @@ const Footer = ({setIsSignedIn, setSignedInName, isSignedIn, setToken}) => {
 	return (
 		<footer className="foot">
 			{isSignedIn ?
-			<li id="footer">
-				<Link to="/signout" onClick={handleSignout}>Sign-Out</Link>
-			</li>
+			<ul id="footer">
+				<li><Link to="/signout" onClick={handleSignout}>Sign-Out</Link></li>
+			</ul>
 				: ''
 			}
 		</footer>

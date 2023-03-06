@@ -16,7 +16,6 @@ const PostForm = ({ token, isSignedIn }) => {
 //Create Post
     const handleSubmit = async (event) => {
         event.preventDefault();
-        
         try {
             const response = await fetch(`${config.apiLink}/${config.cohort}/posts`, {
                 method: "POST",
