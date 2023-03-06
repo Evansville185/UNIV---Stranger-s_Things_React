@@ -12,36 +12,41 @@ useEffect(() => {
     fetchMessages();
 }, [token])
 
+const postCount = receivedPosts.length;
+
     return (
-        <div>
+        <main>
             <h1 className="profile">Profile</h1>
-            <h2>Username: {signedInName}</h2>
-            <h2>Location: </h2>
+            <div>
+                <h2>Username: {signedInName}</h2>
+                <h3>Posts created: {postCount} posts</h3>
+            </div>
+            <main className='messageContainer'>
             <h1 className="messages">Messages</h1>
-            <main>
-                <h3>Messages</h3>
                 {receivedPosts.map((post, i) => (
                     <div key={`${post._id}-${i+1}`}>
-                    <h3>Title:{post.title}</h3>
+                    <p><b>Title:&nbsp;</b>{post.title}</p>
+                    <p className="realpostid"><b>Post ID:&nbsp;</b> {post._id}</p>
+                    <br />
                     <p><b>Description:</b> <br />{post.description}</p>
                     <br />
-                    {post?.messages.map(message => (
+                {post?.messages.length > 0 ? (
+                    post?.messages.map(message => (
                         <Fragment key={message._id}>
                         <div>
-                        <p className="realpostid"><b>Post ID:</b> {message._id}</p>
-                        <p><b>post From:</b> {message.fromUser.username}</p>
+                        <p><b>From:</b> {message.fromUser.username}</p>
                         <p className='profileMsg'>{message.content}</p>
                         </div>
                         </Fragment>
-                    ))}
+                    ))
+                ) : (
+                    <p>No messages for this post</p>
+                    )}
                     </div>
                 ))}
             </main>
-        </div>
+        </main>
     )
 }
 
 export default Message;
-
-//post.id-1
-//GETTING the key prop error again...

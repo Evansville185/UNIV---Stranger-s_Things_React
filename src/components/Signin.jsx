@@ -3,7 +3,7 @@ import { config } from '../config'
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 
-const Signin = (props) => {
+const Signin = ({UpdateSignedInName, SignedIn, getToken}) => {
         const [username, setUsername] = useState('')
         const [password, setPassword] = useState('')
         
@@ -28,12 +28,12 @@ const Signin = (props) => {
                 const result = await response.json();
                 console.log(result)
                 if (result.success) {
-                props.UpdateSignedInName(username)
-                   props.SignedIn()
-                   props.getToken(result.data.token)
+                    UpdateSignedInName(username)
+                    SignedIn()
+                    getToken(result.data.token)
                     navigate('/')
                 } else {
-                  alert('try again with the correct accounts details')
+                  alert('Try again with the correct credentials')
                 }
             } catch (error) {
                 console.error(error);
@@ -41,9 +41,9 @@ const Signin = (props) => {
         }
 
     return (
-        <main>
-            <div>
-                <form onSubmit={handleSubmit} className='signin-container'>
+        <main className='signinContainer'>
+            <div className='signinform'>
+                <form onSubmit={handleSubmit} >
                     <h1>Stranger's Things Sign-In</h1>
                         <input 
                             type='text' placeholder='username' className='signin-input'

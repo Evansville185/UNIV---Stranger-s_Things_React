@@ -1,25 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 
-const Footer = ({signedInName, setIsSignedIn, setSignedInName, isSignedIn}) => {
-
-	const signout = (setToken) => {
-		setIsSignedIn(false);
-		setSignedInName('')
-		console.log(signedInName);
-		console.log(signedInName);
-		setToken(null)
-	};
+const Footer = ({setIsSignedIn, setSignedInName, isSignedIn, setToken}) => {
 	
 	const handleSignout = () => {
-		signout();
+		setIsSignedIn(false);
+		setSignedInName('')
+		setToken('')
 	}
+	
 	return (
-		
 		<footer className="foot">
 			{isSignedIn ?
 			<li id="footer">
-				<Link onClick={handleSignout} to="/signout">Sign Out</Link>
+				<Link to="/signout" onClick={handleSignout}>Sign-Out</Link>
 			</li>
 				: ''
 			}

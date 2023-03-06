@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 
-function Signout() {
+const Signout = () => {
     return (
     <main className='out'>
-      <div>
+      <div className='signoutform'>
 		    <h1>You've successfully signed out!</h1>
         <span>
           <Link to='/signin'>Sign In</Link>

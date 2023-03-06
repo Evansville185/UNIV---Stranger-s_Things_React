@@ -13,8 +13,6 @@ const PostForm = ({ token, isSignedIn }) => {
     const navigate = useNavigate();
     const [posts, setPosts] = useState([]);
  
-
-
 //Create Post
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -54,7 +52,10 @@ const PostForm = ({ token, isSignedIn }) => {
                 setTimeout(() => {
                     isCreated(false); 
                     navigate('/profile');
-                    }, 5000);
+                }, 5000);
+                setTimeout(() => {
+                    navigate('/');
+                }, 5001)
                 }
             } catch(error) {
                 console.error(error)

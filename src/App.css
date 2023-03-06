@@ -12,34 +12,9 @@ body {
   background-color: rgb(172, 172, 172);
 }
 
-/* .body {
-  grid-column: 1;
-  grid-row: 3;
-  display: grid;
-  grid-template-rows: auto minmax(0, 1fr);
-  overflow-y: hidden;
-} */
-
-/* .app {
-  display: grid;
-  grid-template-columns: 320px 1fr;
-  grid-template-rows: auto auto 1fr;
-  grid-gap: 8px;
-  
-  height: 100%;
-  width: 100%;
-
-  overflow: hidden;
-
-  background: #444;
-} */
-
 header {
   display: flex;
   justify-content: end;
-  /* grid-template-columns: 320px 1fr;
-  grid-template-rows: auto auto 1fr;
-  grid-gap: 8px; */
   width: 100%;
   padding-bottom: 1.3rem;
   overflow: hidden;
@@ -47,7 +22,7 @@ header {
   background-image: url("Stranger_Things.png");
   background-repeat: no-repeat;
   background-size: 200px 75px;
-  position: absolute; top: 0;
+  position: fixed;
 }
 
 header li{
@@ -293,7 +268,6 @@ section input[type="text"], input[type="password"] {
   margin: 0.5rem;
 }
 
-
 .offscreen {
   position: absolute;
   left: -9999px;
@@ -331,62 +305,28 @@ section input[type="text"], input[type="password"] {
   color: white;
 }
 
-.out {
+/* Signing/Signout/Register */
+.out, .registerContainer, .signinContainer {
   display: grid;
   place-content: center;
+  height: 100vh;
+}
+
+.signinform, .signoutform, .regform {
+  position: fixed;
+  top: 7rem;
+  width: 50%;
 }
 
 /* Message */
 .profileMsg {
-  border: 1px solid gray;
   padding: 2px;
   margin-top: 10px;
+  width: 75%;
 }
 
-
-/* .content {
-  grid-column: 2;
-  grid-row: 3;
-
-  padding: 8px;
-  display: flex;
-
-  background: #ddd;
-  overflow: hidden;
-} */
-
-/* .App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.messageContainer {
+  display: grid;
+  place-items: center;
+  width: 100%;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-  
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-} */

@@ -28,14 +28,18 @@ const Register = () => {
             const result = await response.json();
             console.log(result)
 
-            if (result.success) {
+         if (username.length < 4) {
+            alert("Username is too short '\n' Username must be at least 4 characters long" )
+        } else if (password.length < 8){
+            alert("Password is too short '\n' Password must be at least 8 characters long" )
+        } else if (result.success) {
                 setSuccess(true);
                 setTimeout(() => {
                     navigate("/signin"); 
                     }, 5000)
             } else {
-                alert('try again with the correct accounts details')
-            }
+                alert('Username already taken, please try registering with another username')
+            } 
         } catch (error) {
             console.error(error);
         }
@@ -44,27 +48,27 @@ const Register = () => {
   return (
     <>
 {success ? (
-	<main>
-		<div>
+	<main className='registerContainer'>
+		<div className='regform'>
 			<h1>You've successfully registered as: </h1>
 			<h4>Username: {username}
 				<br />
 				Password: {password}
+                <br />
 			</h4>
-				<h4>You are now being redirected to the Signin page.
-				<br />Loading...</h4>
+				<p>You are now being redirected to the Signin page.
+				<br />Loading...</p>
 		</div>
 	</main>
 ) : (
-    <main>
-        <div>
-            <form onSubmit={handleSubmit} className='register-container'>
+    <main className='registerContainer'>
+        <div className='regform'>
+            <form onSubmit={handleSubmit} >
                 <h1>Stranger's Things Registration</h1>
                     <input 
                         type='text' placeholder='username' className='login-input'
                         onChange={(event) => setUsername(event.target.value)}
                         />
-
                     <input 
                         type='text' placeholder='password' className='password-input'
                         onChange={(event) => setPassword(event.target.value)}
@@ -77,13 +81,12 @@ const Register = () => {
 						Already registered?
 						<br />
 						<span>
-							{/* put router link here */}
 							<Link to='/signin'>Sign In</Link>
 						</span>
 					</p>
         </div>
     </main>
-)}
+    )}
     </>
     )
 }

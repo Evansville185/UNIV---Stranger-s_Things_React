@@ -2,7 +2,7 @@ import React, { useState, useEffect, Fragment, useCallback } from 'react';
 import { getAllPosts } from '../api'
 import { PostForm } from '../components'
 import { config } from '../config';
-import { useNavigate, Link } from 'react-router-dom'
+import { useNavigate} from 'react-router-dom'
 
 
 const Posts = ({ signedInName, isSignedIn, token }) => {
@@ -13,6 +13,7 @@ const Posts = ({ signedInName, isSignedIn, token }) => {
     const [dropdownValue, setDropDownValue] = useState('title');
     const [showMsgBox, setShowMsgBox] = useState(false);
     const [message, setMessage] = useState('');
+    const [sent, setSent] = useState('');
     
 
 //DELETE --only deletable if author of post-----------------------------------------------
@@ -26,19 +27,13 @@ const Posts = ({ signedInName, isSignedIn, token }) => {
                 }
             });
             const result = await response.json();
-
-            if (result.success) {
-            //     alert('Only author posts are allowed to delete their post')
-            // } else {
                 const newPosts = posts.filter(post => post._id !== postIdDelete);
                 setPosts(newPosts);
                 return result;
-            }
         } catch(error){
             console.error(error);
         }
     }
-
 
 //FETCH DATA-----------------------------------------------------------------------------
   useEffect(() => {
@@ -114,6 +109,14 @@ const Posts = ({ signedInName, isSignedIn, token }) => {
 		console.log("message result", result);
 		if (result.success) {
             setMessage(message);
+
+                setSent(true);
+
+            setTimeout(() => {
+                setShowMsgBox(false);
+                setSent(false);
+            }, 2000)
+            //work on this
         }
 	} catch (error) {
         console.error(error);
@@ -130,8 +133,8 @@ const Posts = ({ signedInName, isSignedIn, token }) => {
     <main>
         <h1>Posts</h1>
             <form className="searchContainer">
-                <input type="text" id="searchBar" name="search-term" placeholder={`Search ${dropdownValue}...`} value={searchTerm} onChange={(event) => setSearchTerm(event.target.value)}></input>
-                {/* <button type="submit" id="searchBtn">Submit</button> */}
+                <input type="text" id="searchBar" name="search-term" placeholder={`Search ${dropdownValue}...`} 
+                value={searchTerm} onChange={(event) => setSearchTerm(event.target.value)}></input>
                 <select name="dropdown" id="cat-select" onChange={(e) => setDropDownValue(e.target.value)}>
                     <option value="title">Title</option>
                     <option value="description">Description</option>
@@ -149,7 +152,7 @@ const Posts = ({ signedInName, isSignedIn, token }) => {
             postsCopy.map(post => (
                 <div key={post._id} className="postcontent">
                     <h3>{post.title}</h3>
-                    <p className="realpostid"><b>Post ID:</b>{post._id}</p> {/* testing */}
+                    <p className="realpostid"><b>Post ID:</b>{post._id}</p>
                     <p><b>User:</b> {post.author.username}</p>
                     <p>{post.isAuthor}</p>
                     <br />
@@ -195,10 +198,13 @@ const Posts = ({ signedInName, isSignedIn, token }) => {
                                             type='text' rows={4} cols={40}placeholder='Write a message...' className='message-box'
                                             onChange={event => setMessage(event.target.value)}/>
                                             <br />
+                                    {!sent ?
                                     <span>
                                         <button className='sendMsg' type='submit'>Submit</button>
                                         <button className='cancelMsg' onClick={cancelMessage}>Cancel</button>
                                     </span>
+                                    : <span>Message sent</span>
+                                    }
                                 </form>
                             ) : ''
                          }

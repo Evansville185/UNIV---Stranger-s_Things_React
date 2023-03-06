@@ -15,7 +15,7 @@ const App = () => {
 	  };
 
 	const [token, setToken] = useState('');
-	const getToken = (token, id) => {
+	const getToken = (token) => {
 		setToken(token);
 	}
 
@@ -33,7 +33,7 @@ const App = () => {
 							</Routes>
 						</main>
 					</div>
-					<Footer isSignedIn={isSignedIn} />
+					<Footer isSignedIn={isSignedIn} setToken={setToken} setSignedInName={setSignedInName} />
 			</div>
 	);
 };
