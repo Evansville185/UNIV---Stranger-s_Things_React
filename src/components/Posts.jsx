@@ -194,8 +194,9 @@ const Posts = ({ signedInName, isSignedIn, token }) => {
                             {postId === post._id && showMsgBox ? (
                                 <form onSubmit={submitMessage} className='inqBtn'>
                                     <h3>Message</h3>
+                                        {}
                                         <textarea 
-                                            type='text' rows={4} cols={40}placeholder='Write a message...' className='message-box'
+                                            type='text' rows={4} cols={40}placeholder='Write a message...' required className='message-box'
                                             onChange={event => setMessage(event.target.value)}/>
                                             <br />
                                     {!sent ?
